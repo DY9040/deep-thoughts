@@ -1,6 +1,11 @@
 import React from 'react';
-import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { 
+  ApolloProvider, 
+  ApolloClient, 
+  InMemoryCache, 
+  createHttpLink,
+} from '@apollo/client';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -45,14 +50,6 @@ function App() {
               <Route
                 path="/profile"
                 element={<Profile />}
-              />
-              <Route
-                path="/profile/:username?"
-                element={<Profile />}
-              />
-              <Route
-                path="/thought"
-                element={<SingleThought />}
               />
               <Route
                 path="/thought/:id"
