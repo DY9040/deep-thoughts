@@ -12,16 +12,16 @@ import Auth from '../utils/auth';
 const Profile = (props) => {
   const { username: userParam } = useParams();
 
-  const { loading, data } = useQuery(userParam ? QUERY_USER: QUERY_ME, {
-    variables: { username: userParam }
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    variables: { username: userParam },
   });
 
   const user = data?.me || data?.user || {};
 
   // navigate to personal profile page if username is the logged-in user's
-if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-  return <Navigate to="/profile" />;
-}
+  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    return <Navigate to="/profile" />;
+  }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -45,7 +45,8 @@ if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
 
       <div className="flex-row justify-space-between mb-3">
         <div className="col-12 mb-3 col-lg-8">
-          <ThoughtList thoughts={user.thoughts} 
+          <ThoughtList 
+          thoughts={user.thoughts} 
           title={`${user.username}'s thoughts...`} 
           />
         </div>
