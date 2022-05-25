@@ -24,13 +24,19 @@ const handleFormSubmit = async event => {
 
   try {
     const { data } = await login({
-      variables: { ...formState }
+      variables: { ...formState },
     });
 
     Auth.login(data.login.token);
   } catch (e) {
     console.error(e);
   }
+
+   // clear form values
+    setFormState({
+    email: '',
+    password: '',
+  });
 };
   
 
